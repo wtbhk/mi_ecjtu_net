@@ -10,7 +10,7 @@ def list():
 
 @app.route('/<int:id>/vote')
 def vote(id):
-	return id
+	return str(id)
 
 
 @app.route('/new', methods=['POST'])
