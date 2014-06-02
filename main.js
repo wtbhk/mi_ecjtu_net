@@ -19,13 +19,14 @@ $(document).ready(function(){
 
 
 function calcColor(vote){
+	var str = '#';
 	var r = parseInt(vote * (243-22)/20 + 22);
 	var g = parseInt(160);
 	var b = parseInt(133 - vote * (133-18)/20); 
 	str += r < 10 ? "0" + r.toString(16) : r.toString(16);
 	str += g < 10 ? "0" + g.toString(16) : g.toString(16);
 	str += b < 10 ? "0" + b.toString(16) : b.toString(16);
-	return '#'+str;
+	return str;
 }
 	/**
 	 * [parserColor 颜色转换为十六进制]
