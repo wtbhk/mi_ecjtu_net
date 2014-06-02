@@ -2,7 +2,7 @@ $(document).ready(function(){
 	redraw();
 });
 
-$("ul li").bind("click", function(){
+$("ul li").click( function(){
 	$.get("http://mi.ecjtu.net/"+$(this).attr('id')+"/vote", function(result){
 		redraw();
 	});
