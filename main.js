@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$.get("http://mi.ecjtu.net/list?count=20&start_from=0", function(result){
 		for(var i=0;i<result.length;i++){
 			var tmpl = [
-			'						<a href="javascript:void(0)"><li class="main" id="'+result['id']+'">',
+			'						<a href="javascript:void(0)"><li class="main" id="'+result[i]['id']+'">',
 			'				<div class="author">',
 								result[i]['author'],
 			'				</div>',
