@@ -18,7 +18,9 @@ def list():
 	result = []
 	mi_list = r.zrevrange('mi_list', start_from, start_from + count - 1)
 	for i in mi_list:
-		result.append(r.hgetall('mi_'+str(i)))
+		tmp = r.hgetall('mi_'+str(i));
+		tmp['id'] = i;
+		result.append(tmp)
 	return json.dumps(result)
 
 @app.route('/<id>/vote')
