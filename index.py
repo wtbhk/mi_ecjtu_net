@@ -1,12 +1,12 @@
 from flask import Flask
 from flask import request
-import Redis
+import redis
 import json
 import re
 import time
 app = Flask(__name__)
 
-r = Redis.redis()
+r = redis.Redis()
 
 @app.route('/list')
 def list():
