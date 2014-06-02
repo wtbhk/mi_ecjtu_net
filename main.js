@@ -3,7 +3,8 @@ $(document).ready(function(){
 });
 
 $("ul li").click( function(){
-	$.get("http://mi.ecjtu.net/"+$(this).attr('id')+"/vote", function(result){
+	var id = $(this).attr('id')
+	$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
 		redraw();
 	});
 });
