@@ -14,7 +14,7 @@ def list():
 	start_from = int(request.args.get('start_from'))
 	count = 200 if count>200 else count
 	count = 50 if count<0 else count
-	start_from = 0 if start_from<0
+	start_from = 0 if start_from<0 else start_from
 	result = []
 	mi_list = r.zrevrange('mi_list', start_from, start_from + count)
 	for i in mi_list:
@@ -43,6 +43,6 @@ def new():
 		.execute()
 	if result:
 		return json.dumps({'result':'success', 'id':id})
-		
+
 if __name__ == '__main__':
 	app.run(host='0.0.0.0')
