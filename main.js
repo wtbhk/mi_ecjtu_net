@@ -1,4 +1,14 @@
 $(document).ready(function(){
+	redraw();
+});
+
+$("ul a").on("click", function(){
+	$.get("http://mi.ecjtu.net/"+$(this).attr('id')+"/vote", function(result){
+		redraw();
+	});
+}
+
+function redraw(){
 	$.get("http://mi.ecjtu.net/list?count=20&start_from=0", function(result){
 		for(var i=0;i<result.length;i++){
 			var tmpl = [
@@ -15,9 +25,7 @@ $(document).ready(function(){
 			console.log(calcColor(result[i]['vote']));
 		}
 	},'json');
-});
-
-$
+}
 
 function calcColor(vote){
 	var str = '#';
