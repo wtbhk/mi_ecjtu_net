@@ -3,13 +3,14 @@ $(document).ready(function(){
 });
 
 $("ul li").click( function(){
-	var id = $(this).attr('id')
+	var id = $(this).attr('id');
 	$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
 		redraw();
 	});
 });
 
 function redraw(){
+	$('ul').html('');
 	$.get("http://mi.ecjtu.net/list?count=20&start_from=0", function(result){
 		for(var i=0;i<result.length;i++){
 			var tmpl = [
