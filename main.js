@@ -6,7 +6,7 @@ $("ul a").on("click", function(){
 	$.get("http://mi.ecjtu.net/"+$(this).attr('id')+"/vote", function(result){
 		redraw();
 	});
-};
+});
 
 function redraw(){
 	$.get("http://mi.ecjtu.net/list?count=20&start_from=0", function(result){
