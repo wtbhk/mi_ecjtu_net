@@ -16,7 +16,7 @@ def list():
 	count = 50 if count<0 else count
 	start_from = 0 if start_from<0 else start_from
 	result = []
-	mi_list = r.zrevrange('mi_list', start_from, start_from + count)
+	mi_list = r.zrevrange('mi_list', start_from, start_from + count - 1)
 	for i in mi_list:
 		result.append(r.hgetall('mi_'+str(i)))
 	return json.dumps(result)
