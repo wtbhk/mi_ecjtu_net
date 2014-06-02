@@ -34,7 +34,7 @@ def new():
 	if pattern.match(request.form['content']) or pattern.match(request.form['author']):
 		return json.dumps({'result':'error'})
 	id = r.incr('mi_id')
-	result = r.pipeline().hset('mi_'+str(id), 'author', request.form['author']).hset('mi_'+str(id), 'content', request.form['content']).hset('mi_'+str(id), 'vote', 0).zadd('mi_list', int(time.time()), id).zadd('mi_vote', 0, id).execute()
+	result = r.pipeline().hset('mi_'+str(id), 'author', request.form['author']).hset('mi_'+str(id), 'content', request.form['content']).hset('mi_'+str(id), 'vote', 0).zadd('mi_list', id, int(time.time())).zadd('mi_vote', id, 0).execute()
 	if result:
 		return json.dumps({'result':'success', 'id':id})
 
