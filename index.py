@@ -16,9 +16,12 @@ def list():
 	count = 50 if count<0 else count
 	start_from = 0 if start_from<0 else start_from
 	result = []
+	print start_from
+	print count
 	mi_list = r.zrevrange('mi_list', start_from, start_from + count)
 	for i in mi_list:
 		result.append(r.hgetall('mi_'+i))
+		print i
 	return json.dumps(result)
 
 @app.route('/<id>/vote')
@@ -34,7 +37,7 @@ def new():
 	if pattern.match(request.form['content']) or pattern.match(request.form['author']):
 		return json.dumps({'result':'error'})
 	id = r.incr('mi_id')
-	result = r.pipeline().hset('mi_'+str(id), 'author', request.form['author']).hset('mi_'+str(id), 'content', request.form['content']).hset('mi_'+str(id), 'vote', 0).zadd('mi_list', time.time(), id).zadd('mi_vote', 0, id).execute()
+	result = r.pipeline().hset('mi_'+str(id), 'author', request.form['author']).hset('mi_'+str(id), 'content', request.form['content']).hset('mi_'+str(id), 'vote', 0).zadd('mi_list', int(time.time()), id).zadd('mi_vote', 0, id).execute()
 	if result:
 		return json.dumps({'result':'success', 'id':id})
 
