@@ -11,7 +11,8 @@ $(document).ready(function(){
 			'				</div>',
 			'			</li></a>'].join('\n');
 			$('ul').append(tmpl);
-			$('ul li:last').css('background-color', calcColor(result[i]['vote']))
+			$('ul li:last').css('background-color', calcColor(result[i]['vote']));
+			console.log(calcColor(result[i]['vote']));
 		}
 	},'json');
 });
