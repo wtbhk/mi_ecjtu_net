@@ -1,23 +1,48 @@
 from flask import Flask
 from flask import request
+import Redis
+import json
+import re
+import time
 app = Flask(__name__)
 
+r = Redis.redis()
 
 @app.route('/list')
 def list():
-	return request.args.get('count')
-
+	count = int(request.args.get('count'))
+	start_from = int(request.args.get('start_from'))
+	count = 200 if count>200 else count
+	count = 50 if count<0 else count
+	start_from = 0 if start_from<0
+	result = []
+	mi_list = r.zrevrange('mi_list', start_from, start_from + count)
+	for i in mi_list:
+		result.append(r.hgetall('mi_'+i))
+	return json.dumps(result)
 
 @app.route('/<id>/vote')
 def vote(id):
-	return str(id)
+	r.zincrby('mi_vote', 1, id)
+	r.hincrby('mi_'+id, 'vote', 1)
+	return json.dumps({'result':'success'})
 
 
 @app.route('/new', methods=['POST'])
 def new():
-	return request.form['a']
-
-
-
+	pattern = re.compile(r'<\/?.*>')
+	if pattern.match(request.form['content']) or pattern.match(request.form['author']):
+		return json.dumps({'result':'error'})
+	id = r.incr('mi_id')
+	result = r.pipline()
+		.hset('mi_'+id, 'author', request.form['author'])
+		.hset('mi_'+id, 'content', request.form['content'])
+		.hset('mi_'+id, 'vote', 0)
+		.zadd('mi_list', time.time(), id)
+		.zadd('mi_vote', 0, id)
+		.execute()
+	if result:
+		return json.dumps({'result':'success', 'id':id})
+		
 if __name__ == '__main__':
 	app.run(host='0.0.0.0')
