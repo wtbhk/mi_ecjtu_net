@@ -17,7 +17,7 @@ $(document).ready(function(){
 });
 
 
-function calcColor(var vote){
+function calcColor(vote){
 	var r = vote * (243-22)/20 + 22;
 	var g = 160;
 	var b = 133 - vote * (133-18)/20 
