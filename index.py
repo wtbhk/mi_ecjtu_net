@@ -8,7 +8,7 @@ def list():
 	return request.args.get('count')
 
 
-@app.route('/<int:id>/vote')
+@app.route('/<id>/vote')
 def vote(id):
 	return str(id)
 
