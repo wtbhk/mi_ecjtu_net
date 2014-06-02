@@ -24,7 +24,7 @@ def list():
 @app.route('/<id>/vote')
 def vote(id):
 	r.zincrby('mi_vote', 1, id)
-	r.hincrby('mi_'+id, 'vote', 1)
+	r.hincrby('mi_'+str(id), 'vote', 1)
 	return json.dumps({'result':'success'})
 
 
@@ -34,9 +34,9 @@ def new():
 	if pattern.match(request.form['content']) or pattern.match(request.form['author']):
 		return json.dumps({'result':'error'})
 	id = r.incr('mi_id')
-	result = r.pipline().hset('mi_'+id, 'author', request.form['author']).hset('mi_'+id, 'content', request.form['content']).hset('mi_'+id, 'vote', 0).zadd('mi_list', time.time(), id).zadd('mi_vote', 0, id).execute()
+	result = r.pipline().hset('mi_'+str(id), 'author', request.form['author']).hset('mi_'+str(id), 'content', request.form['content']).hset('mi_'+str(id), 'vote', 0).zadd('mi_list', time.time(), id).zadd('mi_vote', 0, id).execute()
 	if result:
 		return json.dumps({'result':'success', 'id':id})
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0')
+	app.run(host='0.0.0.0',debug=True)
