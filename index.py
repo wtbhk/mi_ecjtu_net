@@ -15,7 +15,7 @@ def vote(id):
 
 @app.route('/new', methods=['POST'])
 def new():
-	return request.form
+	return request.form['a']
 
 
 
