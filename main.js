@@ -1,7 +1,7 @@
 $(document).ready(function(){
-	redraw();
+	
 });
-
+redraw();
 $("ul li").click( function(){
 	var id = $(this).attr('id');
 	$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
