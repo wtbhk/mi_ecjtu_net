@@ -12,6 +12,7 @@ $(document).ready(function(){
 		$.post("http://mi.ecjtu.net/new", {'author':author, 'content':content}, function(result){
 			redraw();
 		});
+		event.stopPropagation();
 	});
 });
 
