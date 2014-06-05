@@ -1,8 +1,5 @@
 $(document).ready(function(){
 	redraw();
-
-});
-
 $("ul li").click( function(){
 	alert('s');
 	var id = $(this).attr('id');
@@ -10,6 +7,9 @@ $("ul li").click( function(){
 		redraw();
 	});
 });
+});
+
+
 
 function redraw(){
 	$('ul').html('');
