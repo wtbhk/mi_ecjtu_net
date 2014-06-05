@@ -1,14 +1,15 @@
 $(document).ready(function(){
 	redraw();
-	$("ul li").click( function(){
-		var id = $(this).attr('id');
-		$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
-			redraw();
-		});
-	});
+
 });
 
-
+$("ul li").click( function(){
+	alert('s');
+	var id = $(this).attr('id');
+	$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
+		redraw();
+	});
+});
 
 function redraw(){
 	$('ul').html('');
