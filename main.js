@@ -8,8 +8,8 @@ $(document).ready(function(){
 	});
 	$(".new .form button").on('click', function(){
 		var data = [];
-		var data['author'] = $("#college option:selected").text() + $("#grade option:selected").text();
-		var data['content'] = $("#content").val();
+		data['author'] = $("#college option:selected").text() + $("#grade option:selected").text();
+		data['content'] = $("#content").val();
 		$.post("http://mi.ecjtu.net/new", data, function(result){
 			redraw();
 		});
