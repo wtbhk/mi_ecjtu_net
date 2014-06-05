@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	redraw();
-$("ul li").click( function(){
+$("a").click( function(){
 	alert('s');
 	var id = $(this).attr('id');
 	$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
@@ -16,14 +16,14 @@ function redraw(){
 	$.get("http://mi.ecjtu.net/list?count=20&start_from=0", function(result){
 		for(var i=0;i<result.length;i++){
 			var tmpl = [
-			'						<a href="javascript:void(0)"><li class="main" id="'+result[i]['id']+'">',
+			'						<li class="main" id="'+result[i]['id']+'"><a href="javascript:void(0)">',
 			'				<div class="author">',
 								result[i]['author'],
 			'				</div>',
 			'				<div class="content">',
 								result[i]['content'],
 			'				</div>',
-			'			</li></a>'].join('\n');
+			'			</a></li>'].join('\n');
 			$('ul').append(tmpl);
 			$('ul li:last').css('background-color', calcColor(result[i]['vote']));
 			console.log(calcColor(result[i]['vote']));

@@ -23,6 +23,10 @@ ul {
 	padding: 0;
 }
 
+ul li a{
+	display: block;
+}
+
 .content {
 	text-align: center;
 	font-size: 22px;
