@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	redraw();
-	$("li a").live('click', function(){
+	$("ul li a").live('click', function(){
 		alert('s');
 		var id = $(this).attr('id');
 		$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
