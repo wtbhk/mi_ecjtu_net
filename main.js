@@ -3,7 +3,6 @@ $(document).ready(function(){
 	$("ul").on('click','li', function(){
 		var id = $(this).attr('id');
 		$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
-			console.log(result)
 			changeColor(result['id'], calcColor(result['vote']));
 		});
 	});
@@ -18,6 +17,7 @@ $(document).ready(function(){
 
 
 function changeColor(id, color){
+	alert('x');
 	$('ul li[id='+id+']').css('background-color', color);
 }
 
