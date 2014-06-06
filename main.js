@@ -24,7 +24,7 @@ function changeColor(id, color){
 
 function redraw(){
 	$('ul').html('');
-	$.get("http://mi.ecjtu.net/list?count=20&start_from=0", function(result){
+	$.get("http://mi.ecjtu.net/list?count=30&start_from=0", function(result){
 		for(var i=0;i<result.length;i++){
 			var tmpl = [
 			'						<li class="main" id="'+result[i]['id']+'"><a href="javascript:void(0)">',
