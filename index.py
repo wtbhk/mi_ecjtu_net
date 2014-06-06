@@ -25,7 +25,6 @@ def list():
 
 @app.route('/<id>/vote')
 def vote(id):
-	var _vote;
 	r.zincrby('mi_vote', 1, id)
 	_vote = r.hincrby('mi_'+str(id), 'vote', 1)
 	return json.dumps({'result':'success', 'id':id, 'vote':_vote})
