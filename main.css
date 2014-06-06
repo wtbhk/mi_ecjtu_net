@@ -19,6 +19,12 @@ ul .main {
 }
 
 .new {
+	padding: 10px;
+
+}
+
+.new input {
+	display: block;
 	
 }
 
