@@ -33,7 +33,7 @@ def vote(id):
 @app.route('/new', methods=['POST'])
 def new():
 	pattern = re.compile(r'<\/?.*>')
-	if pattern.match(request.form['content']) or pattern.match(request.form['author'] or request.form['author'].length>8 or request.form['content'].length>20 or request.form['content'].length==0):
+	if pattern.match(request.form['content']) or pattern.match(request.form['author'] or request.form['author'].length>8 or request.form['content'].length>20 or request.form['content'].length==0:
 		return json.dumps({'result':'error'})
 	id = r.incr('mi_id')
 	result = r.pipeline().hset('mi_'+str(id), 'author', request.form['author']).hset('mi_'+str(id), 'content', request.form['content']).hset('mi_'+str(id), 'vote', 0).zadd('mi_list', id, int(time.time())).zadd('mi_vote', id, 0).execute()
