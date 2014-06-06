@@ -6,7 +6,7 @@ $(document).ready(function(){
 			redraw();
 		});
 	});
-	$(".new .form button").click( function(){
+	$(".new button").click( function(){
 		var author = $("#college option:selected").text() + $("#grade option:selected").text();
 		var content = $("#content").val();
 		$.post("http://mi.ecjtu.net/new", {'author':author, 'content':content, 'flag':'ok'}, function(result){
