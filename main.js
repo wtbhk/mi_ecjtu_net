@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$("ul").on('click','li', function(){
 		var id = $(this).attr('id');
 		$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
+			console.log(result)
 			changeColor(result['id'], calcColor(result['vote']));
 		});
 	});
