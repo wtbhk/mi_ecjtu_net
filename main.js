@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 
 function changeColor(id, color){
-	alert('x');
+	console.log(id,color)
 	$('ul li[id='+id+']').css('background-color', color);
 }
 
