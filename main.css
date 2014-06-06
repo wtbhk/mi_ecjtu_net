@@ -25,7 +25,8 @@ ul .main {
 
 .new input {
 	display: block;
-	
+	border: 0;
+	background-color: #16A085;
 }
 
 
