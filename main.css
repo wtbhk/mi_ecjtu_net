@@ -31,7 +31,9 @@ ul .main {
 }
 
 .new button {
-	margin-top: 
+	margin-top:15px;
+	float: right;
+	font-size: 4px;
 }
 
 
