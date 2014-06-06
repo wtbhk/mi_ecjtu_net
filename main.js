@@ -5,7 +5,7 @@ $(document).ready(function(){
 		$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
 			console.log(result,result['id'],result['vote'])
 			changeColor(result['id'], calcColor(result['vote']));
-		});
+		},'json');
 	});
 	$(".new button").click( function(){
 		var author = $("#college option:selected").text() + $("#grade option:selected").text();
