@@ -32,7 +32,7 @@ def vote(id):
 
 @app.route('/new', methods=['POST'])
 def new():
-	pattern = re.compile(r'\<*\>*')
+	pattern = re.compile(r'.*[<>].*')
 	if pattern.match(request.form['content']) or pattern.match(request.form['author']) or request.form['content']=='':
 		return json.dumps({'result':'error'})
 	id = r.incr('mi_id')
