@@ -3,19 +3,22 @@ $(document).ready(function(){
 	$("ul").on('click','li', function(){
 		var id = $(this).attr('id');
 		$.get("http://mi.ecjtu.net/"+id+"/vote", function(result){
-			redraw();
+			changeColor(result['id'], calcColor(result['vote']));
 		});
 	});
 	$(".new button").click( function(){
 		var author = $("#college option:selected").text() + $("#grade option:selected").text();
 		var content = $("#content").val();
-		$.post("http://mi.ecjtu.net/new", {'author':author, 'content':content, 'flag':'ok'}, function(result){
+		$.post("http://mi.ecjtu.net/new", {'author':author, 'content':content}, function(result){
 			redraw();
 		});
 	});
 });
 
 
+function changeColor(id, color){
+	$('ul li[id='+id+']').css('background-color', color);
+}
 
 function redraw(){
 	$('ul').html('');
